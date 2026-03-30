@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prevoznik.ba
+
+A full-stack platform connecting shippers with carriers across Bosnia and Herzegovina.
+Users can post shipments, carriers receive notifications and place bids — similar to an auction model where the client selects the best offer.
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS + shadcn/ui
+- **Backend:** Hono
+- **ORM:** Prisma
+- **Database:** Neon (serverless PostgreSQL)
+- **Auth:** NextAuth.js v5
+- **Hosting:** Vercel
+
+## Features
+
+- User registration as shipper or carrier
+- JWT-based authentication
+- Role-based dashboards
+- Shipment posting and bid system
+- Real-time chat between shipper and carrier (coming soon)
+- Stripe payments (coming soon)
+- Carrier ratings and reviews (coming soon)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+
+- Neon account
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/bujakasha21/prevoznik.ba.git
+   cd prevoznik.ba
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+   npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables — create a `.env` file:
+```env
+   DATABASE_URL="your-neon-connection-string"
+   NEXTAUTH_SECRET="your-secret"
+   NEXTAUTH_URL="http://localhost:3000"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run database migrations
+```bash
+   npx prisma migrate dev
+```
 
-## Learn More
+5. Start the development server
+```bash
+   npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Roadmap
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [x] Authentication (login, signup, JWT)
+- [x] Role-based access control
+- [x] Database schema
+- [ ] Shipment posting
+- [ ] Bid/auction system
+- [ ] Real-time chat
+- [ ] Carrier ratings
+- [ ] Stripe payments
+- [ ] Google OAuth
+- [ ] Mobile optimization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
