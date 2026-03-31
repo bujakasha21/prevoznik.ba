@@ -2,14 +2,18 @@
 // novu konekciju na bazu i brzo bi potrosio sve dostupne konekcije.
 // ako vec postoji prisma client, radi sa tim - ne pravi novi
 
-import { PrismaClient } from "@prisma/client/extension";
+import { PrismaClient } from "@prisma/client";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import { neon } from "@neondatabase/serverless";
+
+const sql = neon(process.env.DATABASE_URL!);
+
+const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });
 
 const globalForPrisma = globalThis as unknown as {
-    prisma: PrismaClient | undefined
-}
+  prisma: PrismaClient | undefined;
+};
 
-export const prisma = 
-globalForPrisma.prisma ?? new PrismaClient()
+export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
 
-if(process.env.NODE_ENV !== 'production')
-    globalForPrisma.prisma = prisma
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
